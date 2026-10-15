@@ -1,0 +1,38 @@
+.grade-wrap {
+	padding: 20px;
+	background-color: yellow;
+	margin: 20px;
+	border-radius: 5px;
+}	
+.grade-wrap h2{
+	margin-top: 0;
+}	
+.grade-table {
+	width: 100;
+	border-collapse: collapse;
+	}	
+.grade-table th{
+	width: 100px;
+	background-color: blue;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	}
+.grade-table td{
+	width: 10px;
+	text-align: center;
+	border: 1px solid #ccc;
+}
+	
+.grade-table tr:nth:-child(even) {
+background-color: #f2f2f2;
+}	
+		
+footer {
+	background-color:orange;
+	color: black;
+	text-align: center;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 100%;
+}	

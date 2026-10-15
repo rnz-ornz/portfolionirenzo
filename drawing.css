@@ -1,0 +1,64 @@
+.form-wrap {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+}
+.form-box {
+	background-color: lightyelow;
+	padding: 20px;
+	border-radius: 5px;
+	width: 500px;
+}
+.form-box h2 {
+	color: green;
+	margin-top: 0;
+}	
+.form-box label{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+}
+.form-box input[type="text"],
+.form-box input[type="email"],
+.form-box input[type="password"],
+.form-box select,
+.form-box textarea,
+.form-box input[type="file"] {
+	width: 100%;
+	padding: 5px;
+	margin-top: 5px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+.option-group {
+		display: flex;
+		gap: 10px;
+		margin-top: 5px;
+}
+.option-group label {
+		font-weight: normal;
+		margin: 0;
+}
+.form-box button {
+	width: 100%;
+	padding: 8px;
+	margin-top: 10px;
+	background-color: cyan;
+	border: none;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.form-box button[type"reset"] {
+		background-color: pink;
+}		
+		
+	footer {
+	background-color:orange;
+	color: black;
+	text-align: center;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 100%;
+}	

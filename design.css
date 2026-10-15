@@ -1,0 +1,64 @@
+body {
+	margin: 0;
+	font-family: Arial;
+	background-color: cyan;
+}
+header{
+	background-color: blue;
+	color: black;
+	text-align: center;
+	padding: 20px;
+}
+nav{
+	background-color: pink;
+	color: black;
+	text-align: center;
+	padding: 5px;
+	font-weight: bold;
+}
+
+footer {
+	background-color:orange;
+	color: black;
+	text-align: center;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 100%;
+}	
+
+
+.container {
+	diplay: flex;
+}
+
+main {
+	flex: 3;
+	background-color: lightyelow;
+	padding: 15px;
+	border-radius: 5px;
+}
+
+.sidebar {
+		flex: 1;
+		background-color: beige;
+		padding: 15px;
+		border-radius: 5px;
+}
+
+
+.btn{
+	display: inline-block;
+	padding: 15px 20px;
+	background: greenyellow;
+	color: black;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: .3s;
+}
+
+.btn:hover {
+	background: green;
+	transform: scale(1.05);
+	color: aliceblue;
+}
+

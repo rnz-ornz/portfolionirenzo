@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale1.0">
+	<title>Registration Form</title>
+</head>
+<body style="margin:0; background-color:beige;">
+   
+   <div style="margin:0; background-color:cyan; text-align:center; padding:20x;">	
+	  <h1>Student Registration Form</h1>
+	</div>
+	
+	<div style="background-color:gray; display:flex; justify-content:center; gap:100px; padding:10x;">	
+		<a href="index7.html">Home</a>
+		<a href="form.html">Registration Form</a>
+		<a href="table.html">Grade Table</a>
+		<a href="profile.html">My Profile</a>
+	</div>	
+	
+	<div style="padding:20x;">
+		<form>
+			<label>Student Name</label><br>
+			<input type="text" name="student_name"><br><br>
+			
+			<label>Student Number</label><br>
+			<input type="text" name="student_number"><br><br>
+			
+			<label>Email</label><br>
+			<input type="text" name="email"><br><br>
+			
+			<label>Gender</label><br>
+			<input type="radio" name="gender" value="Male">Male
+			<input type="radio" name="gender" value="Female">Female <br><br>
+			
+			<label>Course</label><br>
+			<select name="Course">
+				<option value="BSIT">BSIT</option>
+				<option value="BSCS">BSCS</option>
+				<option value="BSIS">BSIS</option>
+			</select><br><br>	
+			
+			<label>Skills</label><br>
+				<input type= "checkbox" name="skills" value="HTML"> HTML
+				<input type= "checkbox" name="skills" value="CSS"> CSS
+				<input type= "checkbox" name="skills" value="JAVASCRIPT"> JAVASCRIPT <br><br>
+				
+			<label>Upload Picture</label><br>
+				<input type="file" name="picture"><br><br>
+			
+			<label>Address</label><br>
+				<textarea name="address rows="3" cols="30"></textarea><br><br>
+				
+			<input type="submit" value="Submit">
+			<input type="reset"  value="Reset">
+			
+	</form>
+    </div>
+</body>
+</html>
