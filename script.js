@@ -1,13 +1,84 @@
 
 // ================================
-// 1. BACK TO TOP BUTTON
+// 1. HAMBURGER MENU
+// ================================
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+const menuIcon = menuToggle
+    ? menuToggle.querySelector("i")
+    : null;
+
+function closeMenu() {
+    if (!menuToggle || !mainNav) return;
+
+    mainNav.classList.remove("open");
+
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+
+    if (menuIcon) {
+        menuIcon.classList.remove("fa-xmark");
+        menuIcon.classList.add("fa-bars");
+    }
+}
+
+if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+        const isOpen = mainNav.classList.toggle("open");
+
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        if (menuIcon) {
+            menuIcon.classList.toggle("fa-bars", !isOpen);
+            menuIcon.classList.toggle("fa-xmark", isOpen);
+        }
+    });
+
+    // Close the menu after selecting a navigation link
+    mainNav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    // Close menu when clicking outside the header
+    document.addEventListener("click", event => {
+        if (
+            mainNav.classList.contains("open") &&
+            !event.target.closest("header")
+        ) {
+            closeMenu();
+        }
+    });
+
+    // Close menu with Escape
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeMenu();
+            menuToggle.focus();
+        }
+    });
+
+    // Close mobile menu when switching to desktop width
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 700) {
+            closeMenu();
+        }
+    });
+}
+
+// ================================
+// 2. BACK TO TOP BUTTON
 // ================================
 const backToTopBtn = document.getElementById("backToTop");
 
 function updateBackToTop() {
     if (backToTopBtn) {
         backToTopBtn.style.display =
-            window.scrollY > 300 ? "block" : "none";
+            window.scrollY > 300 ? "flex" : "none";
     }
 }
 
@@ -27,10 +98,10 @@ if (backToTopBtn) {
 }
 
 // ================================
-// 2. ACTIVE NAVIGATION LINK
+// 3. ACTIVE NAVIGATION LINK
 // ================================
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll('nav a[href^="#"]');
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll("#mainNav a");
 
 function updateActiveNav() {
     let current = "";
@@ -39,7 +110,7 @@ function updateActiveNav() {
         const sectionTop =
             section.getBoundingClientRect().top + window.scrollY;
 
-        if (window.scrollY >= sectionTop - 180) {
+        if (window.scrollY >= sectionTop - 150) {
             current = section.id;
         }
     });
@@ -65,11 +136,15 @@ window.addEventListener("scroll", updateActiveNav, {
 window.addEventListener("load", updateActiveNav);
 
 // ================================
-// 3. CARD REVEAL ANIMATION
+// 4. CARD REVEAL ANIMATION
 // ================================
 const cards = document.querySelectorAll(".card");
 
-if ("IntersectionObserver" in window) {
+const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
+if ("IntersectionObserver" in window && !prefersReducedMotion) {
     const revealObserver = new IntersectionObserver(
         entries => {
             entries.forEach(entry => {
@@ -83,49 +158,36 @@ if ("IntersectionObserver" in window) {
     );
 
     cards.forEach(card => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(25px)";
-        card.style.transition =
-            "opacity 0.5s ease, transform 0.5s ease";
+        card.classList.add("reveal");
 
         revealObserver.observe(card);
     });
-
-    const revealStyle = document.createElement("style");
-    revealStyle.textContent = `
-        .card.visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-
-    document.head.appendChild(revealStyle);
 }
 
 // ================================
-// 4. TYPING EFFECT
+// 5. TYPING EFFECT
 // ================================
 const heroHeading = document.querySelector(".hero-text h1");
 
-if (heroHeading) {
+if (heroHeading && !prefersReducedMotion) {
     const originalText = heroHeading.textContent.trim();
 
-    if (!window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches) {
-        heroHeading.textContent = "";
+    heroHeading.textContent = "";
 
-        let index = 0;
+    let index = 0;
 
-        function typeWriter() {
-            if (index < originalText.length) {
-                heroHeading.textContent += originalText.charAt(index);
-                index++;
+    function typeWriter() {
+        if (index < originalText.length) {
+            heroHeading.textContent += originalText.charAt(index);
+            index++;
 
-                setTimeout(typeWriter, 70);
-            }
+            setTimeout(typeWriter, 70);
         }
+    }
 
+    if (document.readyState === "complete") {
+        typeWriter();
+    } else {
         window.addEventListener("load", typeWriter, {
             once: true
         });
@@ -133,7 +195,7 @@ if (heroHeading) {
 }
 
 // ================================
-// 5. AUTOMATIC FOOTER YEAR
+// 6. AUTOMATIC FOOTER YEAR
 // ================================
 const footerText = document.querySelector("footer p");
 
