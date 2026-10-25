@@ -1,94 +1,145 @@
-// =============================================
-//  Portfolio JavaScript — Shared across themes
-// =============================================
 
-// --- 1. Back to Top Button ---
-const backToTopBtn = document.getElementById('backToTop');
+// ================================
+// 1. BACK TO TOP BUTTON
+// ================================
+const backToTopBtn = document.getElementById("backToTop");
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.style.display = 'block';
-    } else {
-        backToTopBtn.style.display = 'none';
+function updateBackToTop() {
+    if (backToTopBtn) {
+        backToTopBtn.style.display =
+            window.scrollY > 300 ? "block" : "none";
     }
+}
+
+window.addEventListener("scroll", updateBackToTop, {
+    passive: true
 });
 
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+updateBackToTop();
 
+if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
 
-// --- 2. Active Nav Link Highlight on Scroll ---
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav a');
+// ================================
+// 2. ACTIVE NAVIGATION LINK
+// ================================
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-window.addEventListener('scroll', () => {
-    let current = '';
+function updateActiveNav() {
+    let current = "";
 
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute('id');
+        const sectionTop =
+            section.getBoundingClientRect().top + window.scrollY;
+
+        if (window.scrollY >= sectionTop - 180) {
+            current = section.id;
         }
     });
 
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+        const isActive =
+            link.getAttribute("href") === `#${current}`;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
         }
     });
-});
-
-
-// --- 3. Scroll Reveal Animation for Cards ---
-const cards = document.querySelectorAll('.card');
-
-const revealOnScroll = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1 });
-
-cards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    revealOnScroll.observe(card);
-});
-
-// Triggered when card becomes visible
-document.addEventListener('DOMContentLoaded', () => {
-    const style = document.createElement('style');
-    style.textContent = `.card.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
-    document.head.appendChild(style);
-});
-
-
-// --- 4. Typed Text Effect on Hero Heading ---
-const heroHeading = document.querySelector('.hero-text h1');
-if (heroHeading) {
-    const originalText = heroHeading.textContent;
-    heroHeading.textContent = '';
-    let i = 0;
-
-    function typeWriter() {
-        if (i < originalText.length) {
-            heroHeading.textContent += originalText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 70);
-        }
-    }
-
-    window.addEventListener('load', typeWriter);
 }
 
+window.addEventListener("scroll", updateActiveNav, {
+    passive: true
+});
 
-// --- 5. Current Year in Footer ---
-const footer = document.querySelector('footer p');
-if (footer) {
-    const year = new Date().getFullYear();
-    footer.innerHTML = footer.innerHTML.replace(/\d{4}/, year);
+window.addEventListener("load", updateActiveNav);
+
+// ================================
+// 3. CARD REVEAL ANIMATION
+// ================================
+const cards = document.querySelectorAll(".card");
+
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+
+    cards.forEach(card => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(25px)";
+        card.style.transition =
+            "opacity 0.5s ease, transform 0.5s ease";
+
+        revealObserver.observe(card);
+    });
+
+    const revealStyle = document.createElement("style");
+    revealStyle.textContent = `
+        .card.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    `;
+
+    document.head.appendChild(revealStyle);
+}
+
+// ================================
+// 4. TYPING EFFECT
+// ================================
+const heroHeading = document.querySelector(".hero-text h1");
+
+if (heroHeading) {
+    const originalText = heroHeading.textContent.trim();
+
+    if (!window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches) {
+        heroHeading.textContent = "";
+
+        let index = 0;
+
+        function typeWriter() {
+            if (index < originalText.length) {
+                heroHeading.textContent += originalText.charAt(index);
+                index++;
+
+                setTimeout(typeWriter, 70);
+            }
+        }
+
+        window.addEventListener("load", typeWriter, {
+            once: true
+        });
+    }
+}
+
+// ================================
+// 5. AUTOMATIC FOOTER YEAR
+// ================================
+const footerText = document.querySelector("footer p");
+
+if (footerText) {
+    footerText.innerHTML = footerText.innerHTML.replace(
+        /\b\d{4}\b/,
+        new Date().getFullYear()
+    );
 }
