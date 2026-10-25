@@ -1,19 +1,41 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My Portfolio</title>
+
     <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
+
+    <!-- HEADER -->
     <header>
         <div class="logo">
             <h2>MY PORTFOLIO</h2>
             <p>As a BSIT student in PDM</p>
         </div>
-        <nav>
+
+        <!-- HAMBURGER BUTTON -->
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mainNav">
+
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+
+        <!-- NAVIGATION -->
+        <nav id="mainNav" aria-label="Main navigation">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#skills">Lab Acts</a>
@@ -22,107 +44,153 @@
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-text">
-            <h1>Hello Everyone!</h1>
-            <p>Renzo's Online Portfolio for BS Information Technology.</p>
-            <a href="#subjects" class="btn">View My Favorite Subjects</a>
-        </div>
-        <div class="hero-image">
-            <img src="ponge.jpg" alt="PDM Logo Illustration">
-        </div>
-    </section>
+    <!-- HOME -->
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <h1>Hello Everyone!</h1>
 
-    <section id="about">
-        <h2>About Me</h2>
-       <p>As an Information Technology student, I find a unique kind of fulfillment in taking raw code HTML, CSS, and JavaScript and transforming it into functional, interactive websites from the ground up. There is a deeply satisfying feeling when a complex layout finally aligns perfectly with CSS Grid or when a JavaScript function executes smoothly to bring a page to life.
+                <p>
+                    Renzo's Online Portfolio for BS Information Technology.
+                </p>
 
-My journey in web development is ongoing. I am constantly pushing myself to learn new technologies, refine my coding practices, and bridge the gap between theoretical IT concepts and practical, real-world applications. Whether I am structuring accessible semantic HTML, experimenting with modern styling techniques, or handling asynchronous operations in JavaScript, every project is a chance to experiment and grow.</p>
-    </section>
+                <a href="#subjects" class="btn">
+                    View My Favorite Subjects
+                </a>
+            </div>
 
-     <section id="skills">
+            <div class="hero-image">
+                <img src="ponge.jpg" alt="Portfolio profile image">
+            </div>
+        </section>
 
-        <h2>Laboratory Activities</h2>
+        <!-- ABOUT -->
+        <section id="about">
+            <h2>About Me</h2>
 
-        <div class="cards">
+            <p>
+                As an Information Technology student, I find a unique kind
+                of fulfillment in taking raw code HTML, CSS, and JavaScript
+                and transforming it into functional, interactive websites
+                from the ground up. There is a deeply satisfying feeling
+                when a complex layout finally aligns perfectly with CSS
+                Grid or when a JavaScript function executes smoothly to
+                bring a page to life.
+            </p>
 
-            <article class="card">
-                <h3>Laboratory Activity 1</h3>
-                <p>Purely HTML code.</p>
-                <a href="journal.html">Check</a>
-            </article>
+            <p class="about-second">
+                My journey in web development is ongoing. I am constantly
+                pushing myself to learn new technologies, refine my coding
+                practices, and bridge the gap between theoretical IT
+                concepts and practical, real-world applications. Whether
+                I am structuring accessible semantic HTML, experimenting
+                with modern styling techniques, or handling asynchronous
+                operations in JavaScript, every project is a chance to
+                experiment and grow.
+            </p>
+        </section>
 
-            <article class="card">
-                <h3>Laboratory Activity 2</h3>
-                <p>Website with forms and tables created using HTML and CSS.</p>
-                <a href="index7.html">Check</a>
-            </article>
+        <!-- LABORATORY ACTIVITIES -->
+        <section id="skills">
+            <h2>Laboratory Activities</h2>
 
-            <article class="card">
-                <h3>Laboratory Activity 3</h3>
-                <p>Introduction to transitions and external CSS.</p>
-                <a href="index2.html">Check</a>
-            </article>
+            <div class="cards">
 
-            <article class="card">
-                <h3>Laboratory Activity 4</h3>
-                <p>Simple Responsive Landing Page.</p>
-                <a href="index1.html">Check</a>
-            </article>
+                <article class="card">
+                    <h3>Laboratory Activity 1</h3>
+                    <p>Purely HTML code.</p>
+                    <a href="journal.html">Check</a>
+                </article>
 
-            <article class="card">
-                <h3>Laboratory Activity 5</h3>
-                <p>Simple Responsive Landing Page with JavaScript.</p>
-                <a href="index5.html">Check</a>
-            </article>
+                <article class="card">
+                    <h3>Laboratory Activity 2</h3>
+                    <p>Website with forms and tables created using HTML and CSS.</p>
+                    <a href="index7.html">Check</a>
+                </article>
 
-            <article class="card">
-                <h3>Laboratory Activity 6</h3>
-                <p>Simple JavaScript Asynchronous Data.</p>
-                <a href="index6.html">Check</a>
-            </article>
+                <article class="card">
+                    <h3>Laboratory Activity 3</h3>
+                    <p>Introduction to transitions and external CSS.</p>
+                    <a href="index2.html">Check</a>
+                </article>
 
+                <article class="card">
+                    <h3>Laboratory Activity 4</h3>
+                    <p>Simple Responsive Landing Page.</p>
+                    <a href="index1.html">Check</a>
+                </article>
 
-        </div>
-    </section>
+                <article class="card">
+                    <h3>Laboratory Activity 5</h3>
+                    <p>Simple Responsive Landing Page with JavaScript.</p>
+                    <a href="index5.html">Check</a>
+                </article>
 
-    <section id="subjects">
-        <h2>My Favorite Subjects</h2>
-        <div class="cards">
-            <article class="card">
-                <h3>EDOOP</h3>
-                <p>I love Pythonnnn.</p>
-            </article>
-            <article class="card">
-                <h3>OOP</h3>
-                <p>C# with designing is a chef's kiss.</p>
-            </article>
-            <article class="card">
-                <h3>IntProg</h3>
-                <p>Another designing user interface.</p>
-            </article>
-             <article class="card">
-                <h3>Web</h3>
-                <p>I love debugging.Weh ba?haha</p>
-            </article>
-        </div>
-    </section>
+                <article class="card">
+                    <h3>Laboratory Activity 6</h3>
+                    <p>Simple JavaScript Asynchronous Data.</p>
+                    <a href="index6.html">Check</a>
+                </article>
 
-    <section id="contact">
-        <h2>Student Information</h2>
-        <h3><strong>Name: </strong>Renzo D. Oranza</h3>
-        <h3><strong>Section: </strong>BSIT31A</h3>
-        <h3><strong>Student Number: </strong>PDM 2024-003638</h3>
-    </section>
+            </div>
+        </section>
 
+        <!-- FAVORITE SUBJECTS -->
+        <section id="subjects">
+            <h2>My Favorite Subjects</h2>
+
+            <div class="cards">
+
+                <article class="card">
+                    <h3>EDOOP</h3>
+                    <p>I love Pythonnnn.</p>
+                </article>
+
+                <article class="card">
+                    <h3>OOP</h3>
+                    <p>C# with designing is a chef's kiss.</p>
+                </article>
+
+                <article class="card">
+                    <h3>IntProg</h3>
+                    <p>Another designing user interface.</p>
+                </article>
+
+                <article class="card">
+                    <h3>Web</h3>
+                    <p>I love debugging. Weh ba? haha</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- STUDENT INFORMATION -->
+        <section id="contact">
+            <h2>Student Information</h2>
+
+            <h3><strong>Name:</strong> Renzo D. Oranza</h3>
+            <h3><strong>Section:</strong> BSIT31A</h3>
+            <h3><strong>Student Number:</strong> PDM 2024-003638</h3>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
     <footer>
-        <p>&copy;2026 Renz's PDM Portfolio. All rights reserved.</p>
+        <p>&copy; 2026 Renz's PDM Portfolio. All rights reserved.</p>
     </footer>
 
-    <button class="back-to-top" id="backToTop" title="Back to Top">
-        <i class="fa-solid fa-arrow-up"></i>
+    <!-- BACK TO TOP -->
+    <button
+        class="back-to-top"
+        id="backToTop"
+        type="button"
+        title="Back to Top"
+        aria-label="Back to top">
+
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <script src="script.js"></script>
+
 </body>
 </html>
